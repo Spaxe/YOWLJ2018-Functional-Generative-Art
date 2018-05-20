@@ -365,6 +365,52 @@ view (Model n (Curtain a b)) =
         <section data-background-image="img/examples/rectangles/00.svg" data-background-size="cover">
         </section>
 
+        <section>
+          <h3>Implementing a simple L-System</h3>
+          <pre><code class="elm" data-trim data-noescape>
+type alias Rule a =
+    a -> List a
+
+apply : Rule a -> List a -> List a
+apply rule states =
+    List.concatMap (\s -> rule s) states
+          </code></pre>
+        </section>
+
+        <section>
+          <pre><code class="elm" data-trim data-noescape>
+type State
+    = D
+    | S
+    | L
+    | R
+
+turtle : List State -> ( Float, Float ) -> Float -> List Segment
+turtle states point angle =
+    let
+        move ( x, y ) a =
+            ( x + cos (degrees a), y + sin (degrees a) )
+
+        next ( p, a ) state =
+            case state of
+                D -> ( ( move p a, a ), [ PathD.L (move p a) ] )
+
+                S -> ( ( move p a, a ), [ PathD.M (move p a) ] )
+
+                L -> ( ( p, a - 90 ), [] )
+
+                R -> ( ( p, a + 90 ), [] )
+    in
+        List.concat (Tuple.second <| mapAccuml next ( point, angle ) states)
+          </code></pre>
+        </section>
+
+        <section data-background-iframe="http://package.elm-lang.org/packages/Spaxe/elm-lsystem/latest/LSystem">
+        </section>
+
+        <section data-background-image="img/examples/hilbert/00.svg" data-background-size="cover">
+        </section>
+
         <section data-markdown>
           <textarea data-template>
             ### Resources
