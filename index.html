@@ -411,6 +411,44 @@ turtle states point angle =
         <section data-background-image="img/examples/hilbert/00.svg" data-background-size="cover">
         </section>
 
+        <section>
+          <img data-src="img/axidraw_v3.jpg" width="100" height="100">
+          <h3>Interfacing with a pen plotter</h3>
+          <p>Because Elm doesn't (yet) have:</p>
+          <ol>
+            <li class="fragment">Conversion to HTML raw string</li>
+            <li class="fragment">Access to DOM.innerHTML()</li>
+          </ol>
+          <p class="fragment">We use <a href="https://guide.elm-lang.org/interop/javascript.html" target="_blank">port</a> — Elm's foreign function interface to Javascript.</p>
+        </section>
+
+        <section>
+          <img data-src="img/Unofficial_JavaScript_logo_2.svg" width="100" height="100">
+          <div>
+            <h4>1. Specify Elm port function name</h4>
+            <pre><code class="elm" data-trim data-noescape>
+  port print : String -> Cmd msg
+            </code></pre>
+            <br>
+          </div>
+          <div class="fragment">
+            <h4>2. Connect Javascript function to port</h4>
+            <pre><code class="elm" data-trim data-noescape>
+  app.ports.print.subscribe( () => {
+      const node = document.getElementById('frame');
+      const payload = { svg: node.outerHTML };
+      http('POST', api(port, '/print'), payload)
+        .then(console.log)
+        .catch(console.error);
+  });
+            </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <div class="tweet" data-src="https://twitter.com/Xavier_Ho/status/998247706819641344"></div>
+        </section>
+
         <section data-markdown>
           <textarea data-template>
             ### Resources
