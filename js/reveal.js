@@ -39,8 +39,8 @@
 
 			// The "normal" size of the presentation, aspect ratio will be preserved
 			// when the presentation is scaled to fit different resolutions
-			width: 960,
-			height: 700,
+			width: 1920,
+			height: 1080,
 
 			// Factor of the display size that should remain empty around the content
 			margin: 0.04,
@@ -50,7 +50,7 @@
 			maxScale: 2.0,
 
 			// Display presentation control arrows
-			controls: true,
+			controls: false,
 
 			// Help the user learn the controls by providing hints, for example by
 			// bouncing the down arrow when they first encounter a vertical slide
@@ -73,7 +73,7 @@
 			showSlideNumber: 'all',
 
 			// Push each slide change to the browser history
-			history: false,
+			history: true,
 
 			// Enable keyboard shortcuts for navigation
 			keyboard: true,
@@ -159,13 +159,13 @@
 			focusBodyOnPageVisibilityChange: true,
 
 			// Transition style
-			transition: 'slide', // none/fade/slide/convex/concave/zoom
+			transition: 'none', // none/fade/slide/convex/concave/zoom
 
 			// Transition speed
 			transitionSpeed: 'default', // default/fast/slow
 
 			// Transition style for full page slide backgrounds
-			backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+			backgroundTransition: 'none', // none/fade/slide/convex/concave/zoom
 
 			// Parallax background image
 			parallaxBackgroundImage: '', // CSS syntax, e.g. "a.jpg"
@@ -189,7 +189,7 @@
 			pdfPageHeightOffset: -1,
 
 			// Number of slides away from the current that are visible
-			viewDistance: 3,
+			viewDistance: 1,
 
 			// The display mode that will be used to show slides
 			display: 'block',
