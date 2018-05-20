@@ -91,6 +91,12 @@
           <h2>demystify creative coding <a>for functional programmers</a></h2>
         </section>
 
+        <section>
+          <h3>I.   Random grid</h3>
+          <h3 style="color: silver;">II.  Shepherding random numbers</h3>
+          <h3 style="color: silver;">III. Using L-Systems</h3>
+        </section>
+
         <section data-background-image="img/examples/grid/01.svg" data-background-size="50% 50%">
         </section>
 
@@ -173,13 +179,14 @@ type Msg
 init = update Generate (Setup ...)
 
 update msg model =
-  ( Generate, Setup ... ) ->
-    -- | Tell Elm to populate random numbers into Draw
+  case ( msg, model ) of
+    ( Generate, Setup ... ) ->
+      -- | Tell Elm to populate random numbers into Draw
 
-  ( Draw, Setup ... ) ->
-    -- | Create our Model for rendering
+    ( Draw, Setup ... ) ->
+      -- | Create our Model for rendering
 
-view model =
+view (Model ...) =
   List.mapN drawFunction initialShape randomValues
           </code></pre>
         </section>
@@ -232,11 +239,9 @@ update msg model =
 
         <section>
           <h4>3. Drawing our <a>grid</a> of <a>line</a>s, with <a>random rotations</a></h4>
-          <p><small><a href="https://creative.github.io/elm-generative/#grid">View online</a> | <a href="https://github.com/creative/elm-generative/blob/master/example/Grid.elm">Source</a></small></p>
+          <p><small><a href="https://creative.github.io/elm-generative/#grid" target="_blank">View online</a> | <a href="https://github.com/creative/elm-generative/blob/master/example/Grid.elm" target="_blank">Source</a></small></p>
           <pre><code class="elm" data-trim data-noescape>
-import Html exposing (Html)
-
-view : Model -> Html Msg
+view : Model -> Svg Msg
 view (Model m n rs) =
     let
         flip r = if r > 0 then 0 else 90
@@ -244,7 +249,7 @@ view (Model m n rs) =
     List.map3
         (\( dx, dy ) (( x1, y1 ), ( x2, y2 )) r ->
             Svg.g
-                [ Svg.transform <|
+                [ Svg.Attributes.transform <|
                       (" translate(" ++ toString dx ++ "," ++ toString dy ++ ") ")
                       ++ " rotate(" ++ toString (flip r) ++ ") "
                 ]
@@ -253,6 +258,65 @@ view (Model m n rs) =
         (makeGrid m n)
         (List.repeat (m * n) ( ( -0.5, -0.5 ), ( 0.5, 0.5 ) ))
         rs
+          </code></pre>
+        </section>
+
+        <section>
+          <h3 style="color: silver;">I.   Random grid</h3>
+          <h3>II.  Shepherding random numbers</h3>
+          <h3 style="color: silver;">III. Using L-Systems</h3>
+        </section>
+
+        <section>
+          <h3>Shepherding random numbers</h3>
+          <p>Creating the <strong>illusion of order</strong> out of pure randomness.</p>
+          <ol>
+            <li class="fragment">Generate a list of random values between -0.5 and 0.5.
+              <br><em>e.g. A = [ 0.3, 0.5, -0.4, -0.2, 0.7 ]</em>
+            </li>
+            <li class="fragment">Accumulate each random value into a new list.
+              <br><em>e.g. B = [ 0.3, 0.8, 0.4, 0.2, 0.9 ]</em>
+            </li>
+            <li class="fragment">Add both list of random values to a list.
+              <br><em>e.g. C = [ 0, 1, 2, 3, 4 ] + A + B = [ 0.6, 2.3, 2.0, 3.0, 5.6 ]</em>
+            </li>
+          </ol>
+
+        </section>
+
+        <section data-background-image="img/examples/curtain/01.svg" data-background-size="75% 75%">
+        </section>
+
+        <section data-background-image="img/examples/curtain/02.svg" data-background-size="75% 75%">
+        </section>
+
+        <section data-background-image="img/examples/curtain/00.svg" data-background-size="75% 75%">
+        </section>
+
+        <section>
+          <h4>Shepherding values in practice</h4>
+          <p><small><a href="https://creative.github.io/elm-generative/#curtain" target="_blank">View online</a> | <a href="https://github.com/creative/elm-generative/blob/master/example/Curtain.elm" target="_blank">Source</a></small></p>
+          <pre><code class="elm" data-trim data-noescape>
+type Model =
+    Setup Int | Model Int Curtain
+
+type Curtain =
+    Curtain (List (List Float)) (List (List Float))
+
+view : Model -> Svg Msg
+view (Model n (Curtain a b)) =
+    Svg.g
+        []
+        -- | creates `List (List (Float, Float))` with 100 segments each.
+        (initialiseLines 100
+            -- | Add random and shepherded random values to each list of points
+            |> List.map2 (map2First (+)) a
+            |> List.map2 (map2First (+)) (accumulateList a)
+            |> List.map2 (map2First (+)) b
+            |> List.map2 (map2Second (+)) (accumulateList b)
+            -- | Draw each line
+            |> List.map lines
+        )
           </code></pre>
         </section>
 
