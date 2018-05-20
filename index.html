@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/theme/d61.css">
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="lib/css/solarized-light.css">
 
     <!-- Printing and PDF exports -->
     <script>
@@ -54,35 +54,35 @@
         <section>
           <div style="display: flex; justify-content: space-around;">
             <div class="fragment">
-              <img src="img/Elm_logo.svg" width="105" height="100">
+              <img data-src="img/Elm_logo.svg" width="105" height="100">
               <h4>Elm</h4>
             </div>
             <div class="fragment" style="display: flex; justify-content: space-center; align-items: center; font-size: 200%">
               <p>➡</p>
             </div>
             <div class="fragment">
-              <img src="img/parallel-random.svg" width="100" height="100">
+              <img data-src="img/parallel-random.svg" width="100" height="100">
               <h4>SVG</h4>
             </div>
             <div class="fragment" style="display: flex; justify-content: space-center; align-items: center; font-size: 200%">
               <p>➡</p>
             </div>
             <div class="fragment">
-              <img src="img/Unofficial_JavaScript_Logo_2.svg" width="100" height="100">
+              <img data-src="img/Unofficial_JavaScript_Logo_2.svg" width="100" height="100">
               <h4>Javascript</h4>
             </div>
             <div class="fragment" style="display: flex; justify-content: space-center; align-items: center; font-size: 200%">
               <p>➡</p>
             </div>
             <div class="fragment">
-              <img src="img/axidraw_v3.jpg" width="100" height="100">
+              <img data-src="img/axidraw_v3.jpg" width="100" height="100">
               <h4>Pen Plotter</h4>
             </div>
           </div>
         </section>
 
         <section>
-          <img src="img/Elm_logo.svg" width="105" height="100">
+          <img data-src="img/Elm_logo.svg" width="105" height="100">
           <h2>Elm</h2>
           <p><em>A delightful language for reliable webapps</em></p>
           <ul>
@@ -93,23 +93,162 @@
         </section>
 
         <section>
-          <h2>demystify creative coding</h2>
-        </section>
-
-        <section>
           <h2>demystify creative coding <a>for functional programmers</a></h2>
         </section>
 
-        <section>
-          <h3>Techniques we are going to cover</h3>
-          <ol>
-            <li class="fragment">Repeating Patterns</li>
-            <li class="fragment">Shepherding Random Numbers</li>
-            <li class="fragment">Using L-Systems</li>
-          </ol>
+        <section data-background-image="img/examples/grid/01.svg" data-background-size="50% 50%">
+        </section>
+
+        <section data-background-image="img/examples/grid/02.svg" data-background-size="75% 75%">
+        </section>
+
+        <section data-background-image="img/examples/grid/03.svg" data-background-size="75% 75%">
+        </section>
+
+        <section data-background-image="img/examples/grid/00.svg" data-background-size="75% 75%">
         </section>
 
         <section>
+          <h4>Drawing a line</h4>
+          <pre><code class="elm" data-trim data-noescape>
+import Svg
+import Svg.Attributes as Attributes
+
+line : Float -> Float -> Float -> Float -> Svg msg
+line x1 y1 x2 y2 =
+    Svg.line
+        [ Attributes.x1 <| toString x1
+        , Attributes.y1 <| toString y1
+        , Attributes.x2 <| toString x2
+        , Attributes.y2 <| toString y2
+        ]
+        []
+
+translate : Float -> Float -> String
+translate x y =
+    " translate(" ++ toString x ++ "," ++ toString y ++ ") "
+
+rotate : Float -> String
+rotate degree =
+    " rotate(" ++ toString degree ++ ") "
+          </code></pre>
+        </section>
+
+        <section>
+          <h4>Making a grid</h4>
+          <pre><code class="elm" data-trim data-noescape>
+import List.Extra exposing (initialize, andThen)
+
+makeGrid : Int -> Int -> List ( Float, Float )
+makeGrid m n =
+    initialize m toFloat
+        |> andThen (\x -> initialize n toFloat
+        |> andThen (\y -> [ ( x, y ) ]))
+          </code></pre>
+
+          <p><small>Recipe taken from <a href="http://package.elm-lang.org/packages/elm-community/list-extra/7.1.0/List-Extra#andThen">Elm-Packages : List.Extra</a></small></p>
+
+          <pre><code class="elm" data-trim data-noescape>
+> initialize 2 toFloat
+[0,1] : List Float
+
+> makeGrid 2 2
+[(0,0),(0,1),(1,0),(1,1)] : List ( Float, Float )
+          </code></pre>
+        </section>
+
+        <section>
+          <h4>Generating random rotations</h4>
+          <img class="fragment" data-src="img/plunger.jpg" width="500">
+        </section>
+
+        <section>
+          <h4>Generating random rotations</h4>
+          <img class="spin" data-src="img/plunger.jpg" width="500">
+        </section>
+
+        <section>
+          <h4>Elm Random Generators</h4>
+          <pre><code class="elm" data-trim data-noescape>
+generate : (a -> msg) -> Generator a -> Cmd msg
+          </code></pre>
+          <ul>
+            <li class="fragment"><code>(a -> msg)</code> — Msg constructor</li>
+            <li class="fragment"><code>Generator a</code> — random generator</li>
+            <li class="fragment"><code>Cmd msg</code> — Next Msg</li>
+          </ul>
+          <p><small>Built-in package <a href="http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Random#generate">Random</a></small></p>
+        </section>
+
+        <section>
+          <h4>Define our own generator</h4>
+          <pre><code class="elm" data-trim data-noescape>
+import Random exposing (Generator)
+
+random : Generator Float
+random =
+    Random.float -0.5 0.5
+
+randomList : Int -> Generator (List Float)
+randomList n =
+    Random.list n random
+          </code></pre>
+        </section>
+
+        <section>
+          <h4>Generating random numbers</h4>
+          <pre><code class="elm fragment" data-trim data-noescape>
+type Model
+    = Setup Int Int Float               -- | Grid (m x n), and scale
+    | Model Int Int Float (List Float)  -- | Mix in random values
+          </code></pre>
+          <pre><code class="elm fragment" data-trim data-noescape>
+type Msg
+    = Generate
+    | Draw (List Float)
+          </code></pre>
+          <pre><code class="elm fragment" data-trim data-noescape>
+init : ( Model, Cmd Msg )
+init =
+    update Generate (Setup 16 16 10)
+          </code></pre>
+          <pre><code class="elm fragment" data-trim data-noescape>
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case ( msg, model ) of
+        ( Generate, Setup m n _) ) ->
+            ( model, Random.generate Draw <| randomList (m * n) )
+
+        ( Draw data, Setup m n size ) ->
+            ( Model m n size data, Cmd.none )
+
+        _ ->
+            ( model, Cmd.none )
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>To draw a <a>grid</a> of <a>line</a>s, with <a>random rotations</a></h3>
+          <pre><code class="elm" data-trim data-noescape>
+let
+    flip r =
+        if r > 0 then
+            0
+        else
+            90
+in
+List.map3
+    (\( dx, dy ) (( x1, y1 ), ( x2, y2 )) r ->
+        g
+            [ transform <|
+                  Draw.translate dx dy ++ Draw.rotate (flip r)
+            ]
+            [ line x1 y1 x2 y2 ]
+    )
+    (makeGrid m n)
+    start
+    rs
+          </code></pre>
         </section>
 
         <section data-markdown>
