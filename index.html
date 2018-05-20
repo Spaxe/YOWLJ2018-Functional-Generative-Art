@@ -77,24 +77,13 @@
         </section>
 
         <section>
-          <img data-src="img/Elm_logo.svg" width="105" height="100">
-          <h2>Elm</h2>
-          <p><em>A delightful language for reliable webapps</em></p>
-          <ul>
-            <li class="fragment">My first functional language in production</li>
-            <li class="fragment">Flexible with website logic</li>
-            <li class="fragment">Restrictive with DOM-land</li>
-          </ul>
-        </section>
-
-        <section>
           <h2>demystify creative coding <a>for functional programmers</a></h2>
         </section>
 
         <section>
           <h3>I.   Random grid</h3>
           <h3 style="color: silver;">II.  Shepherding random numbers</h3>
-          <h3 style="color: silver;">III. Using L-Systems</h3>
+          <h3 style="color: silver;">III. L-Systems</h3>
         </section>
 
         <section data-background-image="img/examples/grid/01.svg" data-background-size="50% 50%">
@@ -264,12 +253,12 @@ view (Model m n rs) =
         <section>
           <h3 style="color: silver;">I.   Random grid</h3>
           <h3>II.  Shepherding random numbers</h3>
-          <h3 style="color: silver;">III. Using L-Systems</h3>
+          <h3 style="color: silver;">III. L-Systems</h3>
         </section>
 
         <section>
           <h3>Shepherding random numbers</h3>
-          <p>Creating the <strong>illusion of order</strong> out of pure randomness.</p>
+          <p>Creating the <a>illusion of order</a> out of pure randomness.</p>
           <ol>
             <li class="fragment">Generate a list of random values between -0.5 and 0.5.
               <br><em>e.g. A = [ 0.3, 0.5, -0.4, -0.2, 0.7 ]</em>
@@ -277,7 +266,7 @@ view (Model m n rs) =
             <li class="fragment">Accumulate each random value into a new list.
               <br><em>e.g. B = [ 0.3, 0.8, 0.4, 0.2, 0.9 ]</em>
             </li>
-            <li class="fragment">Add both list of random values to a list.
+            <li class="fragment">Add both lists to some starting values.
               <br><em>e.g. C = [ 0, 1, 2, 3, 4 ] + A + B = [ 0.6, 2.3, 2.0, 3.0, 5.6 ]</em>
             </li>
           </ol>
@@ -320,10 +309,60 @@ view (Model n (Curtain a b)) =
           </code></pre>
         </section>
 
+        <section data-background-image="img/examples/landscape/00.svg" data-background-size="cover">
+        </section>
+
+        <section data-background-image="img/examples/sun/00.svg" data-background-size="cover">
+        </section>
+
         <section>
           <h3  style="color: silver;">I.   Random grid</h3>
           <h3 style="color: silver;">II.  Shepherding random numbers</h3>
-          <h3>III. Using L-Systems</h3>
+          <h3>III. L-Systems</h3>
+        </section>
+
+        <section>
+          <h3>L-System is a <a>rewriting</a> ruleset</h3>
+          <p class="fragment"><small><em>Trivia: it was originally created to simulate plants in nature.</em></small></p>
+        </section>
+
+        <section>
+          <h3>🐢 The <a>Turtle Graphics</a> L-System 🐢</h3>
+          <ul>
+            <li>D: Draw forward 1 step</li>
+            <li>S: Skip forward 1 step without drawing</li>
+            <li>L: Turn left</li>
+            <li>R: Turn right</li>
+          </ul>
+          <p><small>Exmaple taken from <a href="http://algorithmicbotany.org/papers/abop/abop.pdf" target="_blank">The Algorithm Beauty of Plants</a></small></p>
+        </section>
+
+        <section>
+          <h3>🐢 Example: Rectangles</h3>
+          <p>Starting point: (0, 0), angle: 0° (->)</p>
+          <p>Starting state: DRDRDRD</p>
+          <img data-src="img/examples/rectangles/01.svg" height="100">
+        </section>
+
+        <section>
+          <h3>Apply this ruleset</h3>
+          <p>Starting state: DRDRDRD</p>
+          <p>Rule: D -> <a>DDRDLDRDRDD</a></p>
+          <h4>We get</h4>
+          <p><a>DDRDLDRDRDD</a>R<a>DDRDLDRDRDD</a>R<a>DDRDLDRDRDD</a>R<a>DDRDLDRDRDD</a></p>
+          <img data-src="img/examples/rectangles/02.svg" height="200">
+        </section>
+
+        <section data-background-image="img/examples/rectangles/03.svg" data-background-size="200%">
+        </section>
+
+        <section data-background-image="img/examples/rectangles/04.svg" data-background-size="200%">
+        </section>
+
+        <section data-background-image="img/examples/rectangles/05.svg" data-background-size="cover">
+        </section>
+
+        <section data-background-image="img/examples/rectangles/00.svg" data-background-size="cover">
         </section>
 
         <section data-markdown>
