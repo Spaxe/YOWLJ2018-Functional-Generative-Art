@@ -189,7 +189,7 @@
 			pdfPageHeightOffset: -1,
 
 			// Number of slides away from the current that are visible
-			viewDistance: 2,
+			viewDistance: 3,
 
 			// The display mode that will be used to show slides
 			display: 'block',
