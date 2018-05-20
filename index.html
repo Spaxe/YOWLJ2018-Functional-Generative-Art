@@ -41,14 +41,9 @@
         -->
 
         <section data-background-image="img/first.jpg" background-size="cover">
-        </section>
-
-        <section>
-          <iframe width="1120" height="630" data-src="https://www.youtube.com/embed/TxQJPNSzl9s?start=450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </section>
-
-        <section>
-          <div class="tweet" data-src="https://twitter.com/inconvergent/status/785037357212991488"></div>
+          <div style="display: flex; justify-content: space-around;">
+            <p class="tape fragment">#plottertwitter, #generative</p>
+          </div>
         </section>
 
         <section>
@@ -110,7 +105,7 @@
 
         <section>
           <h3>How to draw a <a>grid</a> of <a>line</a>s, with <a>random rotations</a></h3>
-          <p class="fragment">Please 🐻 with me. This will be code heavy.</p>
+          <p class="fragment">Please 🐻 with me. This will be code heavy.<br><br>Full code example is link in the slide at the end.</p>
         </section>
 
         <section>
@@ -155,15 +150,6 @@ line x1 y1 x2 y2 =
         </section>
 
         <section>
-          <h4>Preparing data for diagonal lines</h4>
-          <pre><code class="elm" data-trim data-noescape>
-          lines : Int -> Int -> List ( (Float, Float), (Float, Float) )
-          lines m n =
-              List.repeat (m * n) ( ( -0.5, -0.5 ), ( 0.5, 0.5 ) )
-          </code></pre>
-        </section>
-
-        <section>
           <h4>Generating random rotations</h4>
           <img class="fragment" data-src="img/plunger.jpg" height="300">
         </section>
@@ -174,19 +160,33 @@ line x1 y1 x2 y2 =
         </section>
 
         <section>
-          <h4>Define our own generator & model</h4>
+          <h3>The program structure we are about to plumb</h3>
           <pre><code class="elm" data-trim data-noescape>
-import Random exposing (Generator)
+type Model
+    = Setup ...
+    | Model ... (...)
 
-random : Generator Float
-random =
-    Random.float -0.5 0.5               -- | Generate a value between -0.5 and 0.5
+type Msg
+    = Generate
+    | Draw (...)
 
-randomList : Int -> Generator (List Float)
-randomList n =
-    Random.list n random
+init = update Generate (Setup ...)
+
+update msg model =
+  ( Generate, Setup ... ) ->
+    -- | Tell Elm to populate random numbers into Draw
+
+  ( Draw, Setup ... ) ->
+    -- | Create our Model for rendering
+
+view model =
+  List.mapN drawFunction initialShape randomValues
           </code></pre>
-          <pre><code class="elm fragment" data-trim data-noescape>
+        </section>
+
+        <section>
+          <h4>1. Define our own generator & model</h4>
+          <pre><code class="elm" data-trim data-noescape>
 type Model
     = Setup Int Int               -- | Grid (m x n) in size
     | Model Int Int (List Float)  -- | Mix in random values
@@ -195,14 +195,25 @@ type Msg
     = Generate
     | Draw (List Float)
           </code></pre>
+          <pre><code class="elm" data-trim data-noescape>
+init : ( Model, Cmd Msg )
+init =
+    update Generate (Setup 16 16)
+          </code></pre>
         </section>
 
         <section>
-          <h4>Filling in Elm program functions</h4>
+          <h4>2. Random generation</h4>
           <pre><code class="elm" data-trim data-noescape>
-init : ( Model, Cmd Msg )                   -- | Called once on page load
-init =
-    update Generate (Setup 16 16)
+import Random exposing (Generator)
+
+random : Generator Float
+random =
+    Random.float -0.5 0.5         -- | Generate a value between -0.5 and 0.5
+
+randomList : Int -> Generator (List Float)
+randomList n =
+    Random.list n random
           </code></pre>
           <pre><code class="elm fragment" data-trim data-noescape>
 update : Msg -> Model -> ( Model, Cmd Msg ) -- | Calls `view` each time
@@ -220,7 +231,8 @@ update msg model =
         </section>
 
         <section>
-          <h4>Drawing our <a>grid</a> of <a>line</a>s, with <a>random rotations</a></h4>
+          <h4>3. Drawing our <a>grid</a> of <a>line</a>s, with <a>random rotations</a></h4>
+          <p><small><a href="https://creative.github.io/elm-generative/#grid">View online</a> | <a href="https://github.com/creative/elm-generative/blob/master/example/Grid.elm">Source</a></small></p>
           <pre><code class="elm" data-trim data-noescape>
 import Html exposing (Html)
 
@@ -239,7 +251,7 @@ view (Model m n rs) =
                 [ line x1 y1 x2 y2 ]
         )
         (makeGrid m n)
-        (lines m n)
+        (List.repeat (m * n) ( ( -0.5, -0.5 ), ( 0.5, 0.5 ) ))
         rs
           </code></pre>
         </section>
@@ -249,6 +261,8 @@ view (Model m n rs) =
             ### Resources
 
             * [Shepherding random numbers](https://inconvergent.net/generative/) by Inconvergent
+            * [The Algorithm Beauty of Plants](http://algorithmicbotany.org/papers/abop/abop.pdf) by Przemyslaw Prusinkiewicz & Aristid Lindenmayer
+            * [Live Coding Music](https://www.youtube.com/embed/TxQJPNSzl9s?start=450) by Andrew Sorensen
             * [Generating fantasy maps](http://mewo2.com/notes/terrain/) by Martin O'Leary
             * [Daily Art](http://sasj.tumblr.com/) by Saskia Freeke
             * [Generated Space](http://generated.space/) by Kjetil Golid
