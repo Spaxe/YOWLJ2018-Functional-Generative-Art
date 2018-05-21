@@ -129,7 +129,7 @@ makeGrid m n =
         <section>
           <h4>Drawing a line</h4>
           <pre><code class="elm" data-trim data-noescape>
-import Svg
+import Svg exposing (Svg)
 import Svg.Attributes as Attributes
 
 line : Float -> Float -> Float -> Float -> Svg msg
@@ -230,6 +230,8 @@ update msg model =
           <h4>3. Drawing our <a>grid</a> of <a>line</a>s, with <a>random rotations</a></h4>
           <p><small><a href="https://creative.github.io/elm-generative/#grid" target="_blank">View online</a> | <a href="https://github.com/creative/elm-generative/blob/master/example/Grid.elm" target="_blank">Source</a></small></p>
           <pre><code class="elm" data-trim data-noescape>
+import Svg.Attributes exposing (transform)
+
 view : Model -> Svg Msg
 view (Model m n rs) =
     let
@@ -238,7 +240,7 @@ view (Model m n rs) =
     List.map3
         (\( dx, dy ) (( x1, y1 ), ( x2, y2 )) r ->
             Svg.g
-                [ Svg.Attributes.transform <|
+                [ transform <|
                       (" translate(" ++ toString dx ++ "," ++ toString dy ++ ") ")
                       ++ " rotate(" ++ toString (flip r) ++ ") "
                 ]
