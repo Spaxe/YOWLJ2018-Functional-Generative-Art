@@ -1,31 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-    <title>Let's Make Functional Generative Art! — YOW! Lambda Jam 2018 — Xavier Ho</title>
+    <title>
+      Let's Make Functional Generative Art! — YOW! Lambda Jam 2018 — Xavier Ho
+    </title>
 
-    <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/d61.css">
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/d61.css" />
 
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="lib/css/solarized-light.css">
+    <link rel="stylesheet" href="lib/css/solarized-light.css" />
 
     <!-- Printing and PDF exports -->
     <script>
-      var link = document.createElement( 'link' );
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? "css/print/pdf.css"
+        : "css/print/paper.css";
+      document.getElementsByTagName("head")[0].appendChild(link);
     </script>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
-
-        <section data-background-image="data61-theme/img/DATA61_CSIRO_OnWhite_RGB_trans.png" data-background-position="1% 99%" data-background-size="10%" data-background-repeat="no-repeat" data-markdown>
+        <section
+          data-background-image="data61-theme/img/DATA61_CSIRO_OnWhite_RGB_trans.png"
+          data-background-position="1% 99%"
+          data-background-size="10%"
+          data-background-repeat="no-repeat"
+          data-markdown
+        >
           <textarea data-template>
             # Let's Make Functional Generative Art!
             ### [@Xavier_Ho](https://twitter.com/xavier_ho)
@@ -49,28 +61,45 @@
         <section>
           <div style="display: flex; justify-content: space-around;">
             <div class="">
-              <img data-src="img/Elm_logo.svg" width="105" height="100">
+              <img data-src="img/Elm_logo.svg" width="105" height="100" />
               <h4>Elm</h4>
             </div>
-            <div class="fragment" style="display: flex; justify-content: space-center; align-items: center; font-size: 200%">
+            <div
+              class="fragment"
+              style="display: flex; justify-content: space-center; align-items: center; font-size: 200%"
+            >
               <p>➡</p>
             </div>
             <div class="fragment">
-              <img data-src="img/parallel-random.svg" width="100" height="100">
+              <img
+                data-src="img/parallel-random.svg"
+                width="100"
+                height="100"
+              />
               <h4>SVG</h4>
             </div>
-            <div class="fragment" style="display: flex; justify-content: space-center; align-items: center; font-size: 200%">
+            <div
+              class="fragment"
+              style="display: flex; justify-content: space-center; align-items: center; font-size: 200%"
+            >
               <p>➡</p>
             </div>
             <div class="fragment">
-              <img data-src="img/Unofficial_JavaScript_logo_2.svg" width="100" height="100">
+              <img
+                data-src="img/Unofficial_JavaScript_logo_2.svg"
+                width="100"
+                height="100"
+              />
               <h4>Javascript</h4>
             </div>
-            <div class="fragment" style="display: flex; justify-content: space-center; align-items: center; font-size: 200%">
+            <div
+              class="fragment"
+              style="display: flex; justify-content: space-center; align-items: center; font-size: 200%"
+            >
               <p>➡</p>
             </div>
             <div class="fragment">
-              <img data-src="img/axidraw_v3.jpg" width="100" height="100">
+              <img data-src="img/axidraw_v3.jpg" width="100" height="100" />
               <h4>Pen Plotter</h4>
             </div>
           </div>
@@ -81,26 +110,40 @@
         </section>
 
         <section>
-          <h3>I.   Random grid</h3>
-          <h3 style="color: silver;">II.  Shepherding random numbers</h3>
+          <h3>I. Random grid</h3>
+          <h3 style="color: silver;">II. Shepherding random numbers</h3>
           <h3 style="color: silver;">III. L-Systems</h3>
         </section>
 
-        <section data-background-image="img/examples/grid/01.svg" data-background-size="50% 50%">
-        </section>
+        <section
+          data-background-image="img/examples/grid/01.svg"
+          data-background-size="50% 50%"
+        ></section>
 
-        <section data-background-image="img/examples/grid/02.svg" data-background-size="75% 75%">
-        </section>
+        <section
+          data-background-image="img/examples/grid/02.svg"
+          data-background-size="75% 75%"
+        ></section>
 
-        <section data-background-image="img/examples/grid/03.svg" data-background-size="75% 75%">
-        </section>
+        <section
+          data-background-image="img/examples/grid/03.svg"
+          data-background-size="75% 75%"
+        ></section>
 
-        <section data-background-image="img/examples/grid/00.svg" data-background-size="75% 75%">
-        </section>
+        <section
+          data-background-image="img/examples/grid/00.svg"
+          data-background-size="75% 75%"
+        ></section>
 
         <section>
-          <h3>How to draw a <a>grid</a> of <a>line</a>s, with <a>random rotations</a></h3>
-          <p class="fragment">Please 🐻 with me. This will be code heavy.<br><br>Full code example is link in the slide at the end.</p>
+          <h3>
+            How to draw a <a>grid</a> of <a>line</a>s, with
+            <a>random rotations</a>
+          </h3>
+          <p class="fragment">
+            Please 🐻 with me. This will be code heavy.<br /><br />Full code
+            example is link in the slide at the end.
+          </p>
         </section>
 
         <section>
@@ -115,7 +158,15 @@ makeGrid m n =
         |> andThen (\y -> [ ( x, y ) ]))
           </code></pre>
 
-          <p><small>Recipe taken from <a href="http://package.elm-lang.org/packages/elm-community/list-extra/7.1.0/List-Extra#andThen">Elm-Packages : List.Extra</a></small></p>
+          <p>
+            <small
+              >Recipe taken from
+              <a
+                href="http://package.elm-lang.org/packages/elm-community/list-extra/7.1.0/List-Extra#andThen"
+                >Elm-Packages : List.Extra</a
+              ></small
+            >
+          </p>
 
           <pre><code class="elm" data-trim data-noescape>
 > initialize 2 toFloat
@@ -146,12 +197,12 @@ line x1 y1 x2 y2 =
 
         <section>
           <h4>Generating random rotations</h4>
-          <img class="fragment" data-src="img/plunger.jpg" height="300">
+          <img class="fragment" data-src="img/plunger.jpg" height="300" />
         </section>
 
         <section>
           <h4>Generating random rotations</h4>
-          <img class="spin" data-src="img/plunger.jpg" height="300">
+          <img class="spin" data-src="img/plunger.jpg" height="300" />
         </section>
 
         <section>
@@ -227,8 +278,25 @@ update msg model =
         </section>
 
         <section>
-          <h4>3. Drawing our <a>grid</a> of <a>line</a>s, with <a>random rotations</a></h4>
-          <p><small><a href="https://creative.github.io/elm-generative/#grid" target="_blank">View online</a> | <a href="https://github.com/creative/elm-generative/blob/master/example/Grid.elm" target="_blank">Source</a></small></p>
+          <h4>
+            3. Drawing our <a>grid</a> of <a>line</a>s, with
+            <a>random rotations</a>
+          </h4>
+          <p>
+            <small
+              ><a
+                href="https://spaxe.github.io/elm-generative/#grid"
+                target="_blank"
+                >View online</a
+              >
+              |
+              <a
+                href="https://github.com/spaxe/elm-generative/blob/master/example/Grid.elm"
+                target="_blank"
+                >Source</a
+              ></small
+            >
+          </p>
           <pre><code class="elm" data-trim data-noescape>
 import Svg.Attributes exposing (transform)
 
@@ -253,8 +321,8 @@ view (Model m n rs) =
         </section>
 
         <section>
-          <h3 style="color: silver;">I.   Random grid</h3>
-          <h3>II.  Shepherding random numbers</h3>
+          <h3 style="color: silver;">I. Random grid</h3>
+          <h3>II. Shepherding random numbers</h3>
           <h3 style="color: silver;">III. L-Systems</h3>
         </section>
 
@@ -262,31 +330,57 @@ view (Model m n rs) =
           <h3>Shepherding random numbers</h3>
           <p>Creating the <a>illusion of order</a> out of pure randomness.</p>
           <ol>
-            <li class="fragment">Generate a list of random values between -0.5 and 0.5.
-              <br><em>e.g. A = [ 0.3, 0.5, -0.4, -0.2, 0.7 ]</em>
+            <li class="fragment">
+              Generate a list of random values between -0.5 and 0.5. <br /><em
+                >e.g. A = [ 0.3, 0.5, -0.4, -0.2, 0.7 ]</em
+              >
             </li>
-            <li class="fragment">Accumulate each random value into a new list.
-              <br><em>e.g. B = [ 0.3, 0.8, 0.4, 0.2, 0.9 ]</em>
+            <li class="fragment">
+              Accumulate each random value into a new list. <br /><em
+                >e.g. B = [ 0.3, 0.8, 0.4, 0.2, 0.9 ]</em
+              >
             </li>
-            <li class="fragment">Add both lists to some starting values.
-              <br><em>e.g. C = [ 0, 1, 2, 3, 4 ] + A + B = [ 0.6, 2.3, 2.0, 3.0, 5.6 ]</em>
+            <li class="fragment">
+              Add both lists to some starting values. <br /><em
+                >e.g. C = [ 0, 1, 2, 3, 4 ] + A + B = [ 0.6, 2.3, 2.0, 3.0, 5.6
+                ]</em
+              >
             </li>
           </ol>
-
         </section>
 
-        <section data-background-image="img/examples/curtain/01.svg" data-background-size="75% 75%">
-        </section>
+        <section
+          data-background-image="img/examples/curtain/01.svg"
+          data-background-size="75% 75%"
+        ></section>
 
-        <section data-background-image="img/examples/curtain/02.svg" data-background-size="75% 75%">
-        </section>
+        <section
+          data-background-image="img/examples/curtain/02.svg"
+          data-background-size="75% 75%"
+        ></section>
 
-        <section data-background-image="img/examples/curtain/00.svg" data-background-size="75% 75%">
-        </section>
+        <section
+          data-background-image="img/examples/curtain/00.svg"
+          data-background-size="75% 75%"
+        ></section>
 
         <section>
           <h4>Shepherding values in practice</h4>
-          <p><small><a href="https://creative.github.io/elm-generative/#curtain" target="_blank">View online</a> | <a href="https://github.com/creative/elm-generative/blob/master/example/Curtain.elm" target="_blank">Source</a></small></p>
+          <p>
+            <small
+              ><a
+                href="https://spaxe.github.io/elm-generative/#curtain"
+                target="_blank"
+                >View online</a
+              >
+              |
+              <a
+                href="https://github.com/spaxe/elm-generative/blob/master/example/Curtain.elm"
+                target="_blank"
+                >Source</a
+              ></small
+            >
+          </p>
           <pre><code class="elm" data-trim data-noescape>
 type Model =
     Setup Int | Model Int Curtain
@@ -311,21 +405,32 @@ view (Model n (Curtain a b)) =
           </code></pre>
         </section>
 
-        <section data-background-image="img/examples/landscape/00.svg" data-background-size="cover">
-        </section>
+        <section
+          data-background-image="img/examples/landscape/00.svg"
+          data-background-size="cover"
+        ></section>
 
-        <section data-background-image="img/examples/sun/00.svg" data-background-size="cover">
-        </section>
+        <section
+          data-background-image="img/examples/sun/00.svg"
+          data-background-size="cover"
+        ></section>
 
         <section>
-          <h3  style="color: silver;">I.   Random grid</h3>
-          <h3 style="color: silver;">II.  Shepherding random numbers</h3>
+          <h3 style="color: silver;">I. Random grid</h3>
+          <h3 style="color: silver;">II. Shepherding random numbers</h3>
           <h3>III. L-Systems</h3>
         </section>
 
         <section>
           <h3>L-System is a <a>rewriting</a> ruleset</h3>
-          <p class="fragment"><small><em>Trivia: it was originally created to simulate plants in nature.</em></small></p>
+          <p class="fragment">
+            <small
+              ><em
+                >Trivia: it was originally created to simulate plants in
+                nature.</em
+              ></small
+            >
+          </p>
         </section>
 
         <section>
@@ -336,14 +441,23 @@ view (Model n (Curtain a b)) =
             <li>L: Turn left</li>
             <li>R: Turn right</li>
           </ul>
-          <p><small>Exmaple taken from <a href="http://algorithmicbotany.org/papers/abop/abop.pdf" target="_blank">The Algorithm Beauty of Plants</a></small></p>
+          <p>
+            <small
+              >Exmaple taken from
+              <a
+                href="http://algorithmicbotany.org/papers/abop/abop.pdf"
+                target="_blank"
+                >The Algorithm Beauty of Plants</a
+              ></small
+            >
+          </p>
         </section>
 
         <section>
           <h3>🐢 Example: Rectangles</h3>
           <p>Starting point: (0, 0), angle: 0° (->)</p>
           <p>Starting state: DRDRDRD</p>
-          <img data-src="img/examples/rectangles/01.svg" height="100">
+          <img data-src="img/examples/rectangles/01.svg" height="100" />
         </section>
 
         <section>
@@ -351,21 +465,33 @@ view (Model n (Curtain a b)) =
           <p>Starting state: DRDRDRD</p>
           <p>Rule: D -> <a>DDRDLDRDRDD</a></p>
           <h4>We get</h4>
-          <p><a>DDRDLDRDRDD</a>R<a>DDRDLDRDRDD</a>R<a>DDRDLDRDRDD</a>R<a>DDRDLDRDRDD</a></p>
-          <img data-src="img/examples/rectangles/02.svg" height="200">
+          <p>
+            <a>DDRDLDRDRDD</a>R<a>DDRDLDRDRDD</a>R<a>DDRDLDRDRDD</a>R<a
+              >DDRDLDRDRDD</a
+            >
+          </p>
+          <img data-src="img/examples/rectangles/02.svg" height="200" />
         </section>
 
-        <section data-background-image="img/examples/rectangles/03.svg" data-background-size="200%">
-        </section>
+        <section
+          data-background-image="img/examples/rectangles/03.svg"
+          data-background-size="200%"
+        ></section>
 
-        <section data-background-image="img/examples/rectangles/04.svg" data-background-size="200%">
-        </section>
+        <section
+          data-background-image="img/examples/rectangles/04.svg"
+          data-background-size="200%"
+        ></section>
 
-        <section data-background-image="img/examples/rectangles/05.svg" data-background-size="cover">
-        </section>
+        <section
+          data-background-image="img/examples/rectangles/05.svg"
+          data-background-size="cover"
+        ></section>
 
-        <section data-background-image="img/examples/rectangles/00.svg" data-background-size="cover">
-        </section>
+        <section
+          data-background-image="img/examples/rectangles/00.svg"
+          data-background-size="cover"
+        ></section>
 
         <section>
           <h3>Implementing a simple L-System</h3>
@@ -407,31 +533,47 @@ turtle states point angle =
           </code></pre>
         </section>
 
-        <section data-background-image="img/spaxe-lsystem.png" data-background-size="cover">
-        </section>
+        <section
+          data-background-image="img/spaxe-lsystem.png"
+          data-background-size="cover"
+        ></section>
 
-        <section data-background-image="img/examples/hilbert/00.svg" data-background-size="cover">
-        </section>
+        <section
+          data-background-image="img/examples/hilbert/00.svg"
+          data-background-size="cover"
+        ></section>
 
         <section>
-          <img data-src="img/axidraw_v3.jpg" width="100" height="100">
+          <img data-src="img/axidraw_v3.jpg" width="100" height="100" />
           <h3>Interfacing with a pen plotter</h3>
           <p>Because Elm doesn't (yet) have:</p>
           <ol>
             <li class="fragment">Conversion to HTML raw string</li>
             <li class="fragment">Access to DOM.innerHTML()</li>
           </ol>
-          <p class="fragment">We use <a href="https://guide.elm-lang.org/interop/javascript.html" target="_blank">port</a> — Elm's foreign function interface to Javascript.</p>
+          <p class="fragment">
+            We use
+            <a
+              href="https://guide.elm-lang.org/interop/javascript.html"
+              target="_blank"
+              >port</a
+            >
+            — Elm's foreign function interface to Javascript.
+          </p>
         </section>
 
         <section>
-          <img data-src="img/Unofficial_JavaScript_logo_2.svg" width="100" height="100">
+          <img
+            data-src="img/Unofficial_JavaScript_logo_2.svg"
+            width="100"
+            height="100"
+          />
           <div>
             <h4>1. Specify Elm port function name</h4>
             <pre><code class="elm" data-trim data-noescape>
   port print : String -> Cmd msg
             </code></pre>
-            <br>
+            <br />
           </div>
           <div class="fragment">
             <h4>2. Connect Javascript function to port</h4>
@@ -448,7 +590,10 @@ turtle states point angle =
         </section>
 
         <section>
-          <div class="tweet" data-src="https://twitter.com/Xavier_Ho/status/998247706819641344"></div>
+          <div
+            class="tweet"
+            data-src="https://twitter.com/Xavier_Ho/status/998247706819641344"
+          ></div>
         </section>
 
         <section data-markdown>
@@ -464,11 +609,10 @@ turtle states point angle =
           </textarea>
         </section>
 
-
         <section data-markdown>
           <textarea data-template>
             Slide deck at [tinyurl.com/LJ2018-FGA](https://tinyurl.com/LJ2018-FGA)<br>
-            Play with the examples online at [creative.github.io/elm-generative](https://creative.github.io/elm-generative/)
+            Play with the examples online at [spaxe.github.io/elm-generative](https://spaxe.github.io/elm-generative/)
             <br><br>
 
             ### Xavier Ho
@@ -479,7 +623,6 @@ turtle states point angle =
 
           </textarea>
         </section>
-
       </div>
     </div>
 
@@ -492,12 +635,24 @@ turtle states point angle =
       // - https://github.com/hakimel/reveal.js#dependencies
       Reveal.initialize({
         dependencies: [
-          { src: 'plugin/markdown/marked.js' },
-          { src: 'plugin/markdown/markdown.js' },
-          { src: 'plugin/notes/notes.js', async: true },
-          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: 'plugin/embed-tweet/embed-tweet.js' },
+          { src: "plugin/markdown/marked.js" },
+          { src: "plugin/markdown/markdown.js" },
+          { src: "plugin/notes/notes.js", async: true },
+          {
+            src: "plugin/zoom-js/zoom.js",
+            async: true,
+            condition: function() {
+              return !!document.body.classList;
+            }
+          },
+          {
+            src: "plugin/highlight/highlight.js",
+            async: true,
+            callback: function() {
+              hljs.initHighlightingOnLoad();
+            }
+          },
+          { src: "plugin/embed-tweet/embed-tweet.js" }
         ]
       });
     </script>
